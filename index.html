@@ -34,6 +34,7 @@
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
+            margin-top: 10px;
         }
         .map a:hover, .download-button:hover {
             background: #0056b3;
@@ -44,18 +45,30 @@
     <div class="container">
         <h1>Contatti Ongarato Tendaggi</h1>
         <p class="contact-info">📍 <strong>Laboratorio:</strong> Via Desman, 214, 35010 Borgoricco PD</p>
-        <p class="contact-info">📞 <strong>Telefono:</strong> <a href="tel:+393346578246">+393346578246</a></p>
+        <p class="contact-info">📞 <strong>Telefono:</strong> <a href="tel:+393346578246">393346578246</a></p>
         <p class="contact-info">📧 <strong>Email:</strong> <a href="mailto:info@tappezzeriaongarato.it">info@tappezzeriaongarato.it</a></p>
-        <p class="contact-info">📲 <strong>Instagram:</strong> <a href="https://www.instagram.com/_ongaratotendaggi_/" target="_blank">@ongaratotendaggi</a></p>
+        <p class="contact-info">📲 <strong>Instagram:</strong> <a href="https://www.instagram.com/_ongaratotendaggi_/" target="_blank">_ongaratotendaggi_</a></p>
         
         <div class="map">
             <a href="https://www.google.com/maps?q=Via+Desman,+214,+35010+Borgoricco+PD" target="_blank">📍 Apri in Google Maps</a>
         </div>
-
-        <div class="map" style="margin-top: 20px;">
-            <a href="Ongarato_Tendaggi.vcf" class="download-button" download>📥 Salva Contatto</a>
-        </div>
+        
+        <button class="download-button" onclick="saveContact()">📥 Salva Contatto</button>
     </div>
+
+    <script>
+        function saveContact() {
+            const contactData = `BEGIN:VCARD\nVERSION:3.0\nFN:Elena Ongarato\nORG:Ongarato Tendaggi\nTEL:+393346578246\nEMAIL:info@tappezzeriaongarato.it\nADR:;;Via Desman, 214;Borgoricco;PD;;Italia\nURL:https://www.instagram.com/_ongaratotendaggi_/\nEND:VCARD`;
+            
+            const blob = new Blob([contactData], { type: 'text/vcard' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Ongarato_Tendaggi.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
 
